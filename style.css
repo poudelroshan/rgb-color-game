@@ -19,3 +19,11 @@ body {
 #title {
 	color: white;
 }
+
+#horizontal-bar {
+	text-align: center;
+	background: white;
+	color: black;
+	height: 30px;
+
+}
