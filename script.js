@@ -3,15 +3,14 @@ var span = document.getElementById("rgb-placeholder");
 var clickMessage = document.getElementById("click-message");
 var titlebar =  document.getElementById("title");
 var button = document.querySelector("button");
-randomColors(); // Initiate the game with random colors
+randomColors(6); // Initiate the game with 6 random colors
 // Choose a random color that user has to click to win
 // Only select after each squares are filled with random color
 // Else the color selected will be default "purple" color
-var toSelectColor = selectColor();
+var toSelectColor = selectColor(6);
+var easy = document.getElementById("easy");
+var hard = document.getElementById("hard");
 addEventListeners(); // Add Event Listeners to each squares
-var easy = document.getElementbyId("easy");
-var hard = document.getElementbyId("hard");
-
 
 // Returns a number between 0 & n, inclusive
 function getRandomNumber(n){
@@ -49,12 +48,12 @@ function gameLogic (square){
 			this.style.backgroundColor = "#232323";
 			button.textContent = "New Colors";
 		}
-	}
-
+	
+}
 
 // Assigns random colors to each squares
-function randomColors(){
-	for (let i = 0; i < squares.length; i++){
+function randomColors(n){
+	for (let i = 0; i < n; i++){
 		// Assign random color
 		var color = getRandomColor();
 		squares[i].style.backgroundColor = color;
@@ -80,19 +79,53 @@ function addEventListeners(){
 
 	// Function to handle button click events; Play Again or New Color
 	function buttonHandler(){
-		// Load new colors to the squares
-		randomColors();
-		// Remove the title bar color 
-		titlebar.style.backgroundColor = "#232323";
-		// Remove the try again text
-		clickMessage.textContent = "";
-		toSelectColor = selectColor();
+		if (easy.classList == "blueButton"){
+			reset(3);	
+		}
+		else {
+			reset(6);
+		}
+
 	}
+
+	// Event Handling for Hard Button
+	hard.addEventListener("click", function() {
+		reset(6);
+		hard.classList.add("blueButton");
+		easy.classList.remove("blueButton");
+		for (let i = 3; i < squares.length; i++){
+			squares[i].style.display = "block";
+		}
+	});
+
+	// Event Handling for Easy Button
+	easy.addEventListener("click", function() {
+		reset(3);
+		easy.classList.add("blueButton");
+		hard.classList.remove("blueButton");
+		for (let i = 3; i < squares.length; i++){
+			squares[i].style.display = "none";
+		}
+
+	});	
 }
 
 // Returns a new color for the user to select
-function selectColor(){
-	return squares[getRandomNumber(5)].style.backgroundColor;
+function selectColor(n){
+	return squares[getRandomNumber(n)].style.backgroundColor;
 }
-	
+
+// Resets the game with n colors
+function reset(n){
+	// Load new colors to the squares
+	randomColors(n);
+	// Remove the title bar color 
+	titlebar.style.backgroundColor = "#232323";
+	// Remove the try again text
+	clickMessage.textContent = "";
+	toSelectColor = selectColor(n);
+	// Change selected color message
+	span.textContent = toSelectColor.slice(0, 3).toUpperCase() + toSelectColor.slice(3, toSelectColor.length);
+
+}
 

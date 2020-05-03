@@ -25,5 +25,8 @@ body {
 	background: white;
 	color: black;
 	height: 30px;
+}
 
+.blueButton {
+	background-color: blue;
 }
