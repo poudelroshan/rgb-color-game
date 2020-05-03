@@ -66,6 +66,8 @@ function randomColors(n){
 		squares[i].style.backgroundColor = color;
 		
 	}
+    	titlebar.style.backgroundColor = "steelblue";
+
 }
 
 
