@@ -1,3 +1,10 @@
+/** The GREAT RGB COLOR GAME
+  * @author Roshan Poudel <roshan.poudel@stonybrook.edu>
+  * made while learning JS from Colt Steele's Web. Dev. course on Udemy
+  */
+
+
+
 var squares = document.querySelectorAll(".square");
 var span = document.getElementById("rgb-placeholder");
 var clickMessage = document.getElementById("click-message");
