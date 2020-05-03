@@ -112,7 +112,7 @@ function addEventListeners(){
 
 // Returns a new color for the user to select
 function selectColor(n){
-	return squares[getRandomNumber(n)].style.backgroundColor;
+	return squares[getRandomNumber(n-1)].style.backgroundColor;
 }
 
 // Resets the game with n colors
@@ -120,7 +120,7 @@ function reset(n){
 	// Load new colors to the squares
 	randomColors(n);
 	// Remove the title bar color 
-	titlebar.style.backgroundColor = "#232323";
+	titlebar.style.backgroundColor = "steelblue";
 	// Remove the try again text
 	clickMessage.textContent = "";
 	toSelectColor = selectColor(n);
